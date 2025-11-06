@@ -6,7 +6,7 @@ resolution = true
 skip-lint = false
 
 [programs.localnet]
-capstone_project_q4_25 = "DcCkrh3if8j8c1RSMgdW89MVXHDiKgLiAcAQPnCebASo"
+mapsdotfun = "2Qc13ASVqkdAej8xAq6ShhqE3ywwJpxfo1UqQFW9oMQk"
 
 [registry]
 url = "https://api.apr.dev"

@@ -1,12 +1,12 @@
 import * as anchor from "@coral-xyz/anchor";
 import { Program } from "@coral-xyz/anchor";
-import { CapstoneProjectQ425 } from "../target/types/capstone_project_q4_25";
+import { Mapsdotfun } from "../target/types/mapsdotfun";
 
-describe("capstone-project-q4-25", () => {
+describe("mapsdotfun", () => {
   // Configure the client to use the local cluster.
   anchor.setProvider(anchor.AnchorProvider.env());
 
-  const program = anchor.workspace.capstoneProjectQ425 as Program<CapstoneProjectQ425>;
+  const program = anchor.workspace.mapsdotfun as Program<Mapsdotfun>;
 
   it("Is initialized!", async () => {
     // Add your test here.
