@@ -1,0 +1,576 @@
+{
+  "address": "DzqHpVGTsTumRwUBSgv16PKStMA7xK3XhXwTNB921B6r",
+  "metadata": {
+    "name": "poaponsol",
+    "version": "0.1.0",
+    "spec": "0.1.0",
+    "description": "Created with Anchor"
+  },
+  "instructions": [
+    {
+      "name": "close_event",
+      "discriminator": [
+        117,
+        114,
+        193,
+        54,
+        49,
+        25,
+        75,
+        194
+      ],
+      "accounts": [
+        {
+          "name": "organizer",
+          "writable": true,
+          "signer": true,
+          "relations": [
+            "event"
+          ]
+        },
+        {
+          "name": "event",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  101,
+                  118,
+                  101,
+                  110,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "event.organizer",
+                "account": "Event"
+              },
+              {
+                "kind": "account",
+                "path": "event.name",
+                "account": "Event"
+              }
+            ]
+          }
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "create_event",
+      "discriminator": [
+        49,
+        219,
+        29,
+        203,
+        22,
+        98,
+        100,
+        87
+      ],
+      "accounts": [
+        {
+          "name": "organizer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "profile",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  114,
+                  111,
+                  102,
+                  105,
+                  108,
+                  101
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "organizer"
+              }
+            ]
+          }
+        },
+        {
+          "name": "event",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  101,
+                  118,
+                  101,
+                  110,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "organizer"
+              },
+              {
+                "kind": "account",
+                "path": "profile.event_count",
+                "account": "OrganizerProfile"
+              }
+            ]
+          }
+        },
+        {
+          "name": "collection",
+          "docs": [
+            "The collection mint Keypair provided by organizer (new mint account)"
+          ],
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "collection_authority",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  108,
+                  108,
+                  101,
+                  99,
+                  116,
+                  105,
+                  111,
+                  110,
+                  95,
+                  97,
+                  117,
+                  116,
+                  104,
+                  111,
+                  114,
+                  105,
+                  116,
+                  121
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "collection"
+              }
+            ]
+          }
+        },
+        {
+          "name": "core_program",
+          "address": "CoREENxT6tW1HoK8ypY1SxRMZTcVPm7R94rH4PZNhX7d"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "args",
+          "type": {
+            "defined": {
+              "name": "CreateEventArgs"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "mint_badge",
+      "discriminator": [
+        242,
+        234,
+        237,
+        183,
+        232,
+        245,
+        146,
+        1
+      ],
+      "accounts": [
+        {
+          "name": "claimer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "badge_mint",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "event",
+          "writable": true
+        },
+        {
+          "name": "collection",
+          "docs": [
+            "The collection NFT mint (must belong to Metaplex Core)"
+          ],
+          "writable": true
+        },
+        {
+          "name": "collection_authority",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  111,
+                  108,
+                  108,
+                  101,
+                  99,
+                  116,
+                  105,
+                  111,
+                  110,
+                  95,
+                  97,
+                  117,
+                  116,
+                  104,
+                  111,
+                  114,
+                  105,
+                  116,
+                  121
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "collection"
+              }
+            ]
+          }
+        },
+        {
+          "name": "claim_record",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  108,
+                  97,
+                  105,
+                  109
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "event"
+              },
+              {
+                "kind": "account",
+                "path": "claimer"
+              }
+            ]
+          }
+        },
+        {
+          "name": "core_program",
+          "address": "CoREENxT6tW1HoK8ypY1SxRMZTcVPm7R94rH4PZNhX7d"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": []
+    }
+  ],
+  "accounts": [
+    {
+      "name": "ClaimRecord",
+      "discriminator": [
+        57,
+        229,
+        0,
+        9,
+        65,
+        62,
+        96,
+        7
+      ]
+    },
+    {
+      "name": "CollectionAuthority",
+      "discriminator": [
+        209,
+        221,
+        189,
+        233,
+        183,
+        32,
+        247,
+        91
+      ]
+    },
+    {
+      "name": "Event",
+      "discriminator": [
+        125,
+        192,
+        125,
+        158,
+        9,
+        115,
+        152,
+        233
+      ]
+    },
+    {
+      "name": "OrganizerProfile",
+      "discriminator": [
+        216,
+        88,
+        24,
+        216,
+        45,
+        218,
+        209,
+        79
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "CollectionAlreadyInitialized",
+      "msg": "Collection already initialized"
+    },
+    {
+      "code": 6001,
+      "name": "AssetAlreadyInitialized",
+      "msg": "Asset already initialized"
+    },
+    {
+      "code": 6002,
+      "name": "EventNotActive",
+      "msg": "Event is not active"
+    },
+    {
+      "code": 6003,
+      "name": "InvalidCollection",
+      "msg": "Event has ended"
+    },
+    {
+      "code": 6004,
+      "name": "CollectionNotInitialized",
+      "msg": "Collection not initialized"
+    },
+    {
+      "code": 6005,
+      "name": "NotAuthorized",
+      "msg": "Event already closed"
+    },
+    {
+      "code": 6006,
+      "name": "EventAlreadyClosed",
+      "msg": "event is already closed"
+    },
+    {
+      "code": 6007,
+      "name": "InvalidArgument",
+      "msg": "Not authorized to perform this action"
+    }
+  ],
+  "types": [
+    {
+      "name": "ClaimRecord",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "wallet",
+            "type": "pubkey"
+          },
+          {
+            "name": "event",
+            "type": "pubkey"
+          },
+          {
+            "name": "mint",
+            "type": "pubkey"
+          },
+          {
+            "name": "collection_mint",
+            "type": "pubkey"
+          },
+          {
+            "name": "claimed_at",
+            "type": "i64"
+          },
+          {
+            "name": "event_name",
+            "type": "string"
+          },
+          {
+            "name": "event_uri",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "name": "CollectionAuthority",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "creator",
+            "type": "pubkey"
+          },
+          {
+            "name": "collection",
+            "type": "pubkey"
+          },
+          {
+            "name": "nft_name",
+            "type": "string"
+          },
+          {
+            "name": "nft_uri",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "name": "CreateEventArgs",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "uri",
+            "type": "string"
+          },
+          {
+            "name": "start_timestamp",
+            "type": "i64"
+          },
+          {
+            "name": "end_timestamp",
+            "type": "i64"
+          },
+          {
+            "name": "max_claims",
+            "type": "u32"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Event",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "organizer",
+            "type": "pubkey"
+          },
+          {
+            "name": "collection_mint",
+            "type": "pubkey"
+          },
+          {
+            "name": "uri",
+            "type": "string"
+          },
+          {
+            "name": "start_timestamp",
+            "type": "i64"
+          },
+          {
+            "name": "end_timestamp",
+            "type": "i64"
+          },
+          {
+            "name": "max_claims",
+            "type": "u32"
+          },
+          {
+            "name": "is_active",
+            "type": "bool"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "OrganizerProfile",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "organizer",
+            "type": "pubkey"
+          },
+          {
+            "name": "event_count",
+            "type": "u64"
+          }
+        ]
+      }
+    }
+  ],
+  "constants": [
+    {
+      "name": "CLAIM_SEED",
+      "type": "bytes",
+      "value": "[99, 108, 97, 105, 109]"
+    },
+    {
+      "name": "COLLECTION_AUTHORITY_SEED",
+      "type": "bytes",
+      "value": "[99, 111, 108, 108, 101, 99, 116, 105, 111, 110, 95, 97, 117, 116, 104, 111, 114, 105, 116, 121]"
+    },
+    {
+      "name": "EVENT_SEED",
+      "type": "bytes",
+      "value": "[101, 118, 101, 110, 116]"
+    },
+    {
+      "name": "PROFILE_SEED",
+      "type": "bytes",
+      "value": "[112, 114, 111, 102, 105, 108, 101]"
+    }
+  ]
+}
